@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue slider</title>
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css">
     <!-- VUE JS DEVELOPMENT -->
@@ -11,14 +13,47 @@
     <!-- VUE JS PRODUCTION -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </head>
-<body>
-    <h1>HELLO WORLD</h1>
+<body> 
+    <!-- APP CONTAINER -->
+    <div id="app">
+        <!-- SLIDER -->
+        <div class="slider" 
+            @mouseenter="stopLoop"
+            @mouseleave="startLoop"
+            
+            @keyup.arrow-left="prevPhoto"
+            @keyup.arrow-right="nextPhoto"
+            tabindex="0"
+        >
 
+            <!-- PREV ICON -->
+            <div class="prev" @click="prevPhoto()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
 
+            <!-- SLIDER IMG -->
+            <div class="images">
+                <img :src="photos[indexPhoto]" alt="photos">
+            </div>
 
+            <!-- NEXT ICON -->
+            <div class="next" @click="nextPhoto()">
+                <i class="fas fa-arrow-right"></i>
+            </div>
 
+            <!-- NAV CIRCLES -->
+            <div class="nav"> 
+                <i v-for="(photo, index) in photos" 
+                   class="fas fa-circle"
+                   :class="index == indexPhoto ? 'active' : ''"
+                   @click="setPhoto(index)"
+                >
+                </i>
+            </div>
+        </div>
+    </div>
 
-    <!-- JS -->
+    <!-- JAVASCRIPT -->
     <script src="./js/main.js"></script>
 </body>
 </html>
